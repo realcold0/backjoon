@@ -1,42 +1,28 @@
 #include <iostream>
 #include <string>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
-int exchange(char s, int b)
-{
-	try {
-		if (s >= 'A' && s <= 'Z')
-		{
-			return (s - 65) + 10 ;
-		}
-		else if (s >= '0' && s <= '9')
-		{
-			return s - 48;
-		}
-	}
-	catch (int exception) {
-		cout << "예외 발생, " << exception << "!" << endl;
-	}
-}
+int main() {
+    string N;
+    int B,max;
+    int result = 0;
+    int tmp = 0;
+    cin >> N >> B;
+    max = N.size()-1;
 
-int main()
-{
-	string str;
-	int b, max;
-	long int result = 0;
-	cin >> str >> b;
+    for (int i = 0 ; i < N.size(); i++) {
 
-	max = str.length() -1 ;
+        if (N[i] >= '0' && N[i] <= '9') { //숫자
+            tmp = N[i] - '0';
+        }
+        else {
+            tmp = N[i] - 'A' + 10;
+        }
+        //cout << "pow = " << pow(B, i) * tmp << endl;
+        result = result + pow(B, max--) * tmp;
+    }
+    cout << result;
 
-	for (int i = 0; i < str.length(); i++)
-	{
-		//cout << exchange(str[i], b) << " " << pow(b, max) << endl;
-		result += exchange(str[i], b) * pow(b, max--);
-	}
-	cout << result;
-	//cout << max;
-
-
-
+    return 0;
 }
