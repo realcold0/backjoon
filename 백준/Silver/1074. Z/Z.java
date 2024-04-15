@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int count = 0;
+    static int count = 0;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -38,4 +38,7 @@ public class Main {
 			find(size/2, r - size/2, c - size/2);
 		}
 	}
+
+
+
 }
