@@ -1,20 +1,19 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
+
 
 public class Main {
     public static class Building{
         int top;
-        int order;
-        public Building(int top, int order){
+        int index;
+        public Building(int top, int index){
             this.top = top;
-            this.order = order;
+            this.index = index;
         }
     }
     public static void main(String[]args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
@@ -24,8 +23,8 @@ public class Main {
             int buildingTop = Integer.parseInt(st.nextToken());
 
             if(stack.isEmpty()){
-               sb.append("0 ");
-               stack.push(new Building(buildingTop, i));
+                sb.append("0 ");
+                stack.push(new Building(buildingTop, i));
             }else{
                 while(true){
                     if(stack.isEmpty()){
@@ -34,7 +33,7 @@ public class Main {
                         break;
                     }
                     if (stack.peek().top > buildingTop){ //스택이 더크다
-                        sb.append(stack.peek().order).append(" ");
+                        sb.append(stack.peek().index).append(" ");
                         stack.push(new Building(buildingTop, i));
                         break;
                     }
@@ -49,7 +48,10 @@ public class Main {
 
         }
 
-        System.out.println(sb);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+
     }
 
 
