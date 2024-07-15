@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -9,7 +7,6 @@ public class Main {
     static boolean[] checked;
     static StringBuilder sb = new StringBuilder();
     static char[] result;
-    static ArrayList<Character> aeiou = new ArrayList<>(Arrays.asList(new Character[]{'a', 'e', 'i', 'o' , 'u'}));
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -38,14 +35,7 @@ public class Main {
 
     public static void dfs(int l, int c,int start , int count) {
         if(count == l){
-            int conCount = 0;
-            int vowelCount = 0;
-            for(int i =0;i < l;i++) {
-                if (result[i] == 'a' || result[i] == 'e' || result[i] == 'i' || result[i] == 'o' || result[i] == 'u')
-                    vowelCount++;
-                else conCount++;
-            }
-            if(vowelCount >= 1 && conCount >= 2){
+            if(isValid(l, result)){
                 for(int i=0;i<l;i++){
                     sb.append(Character.toString(result[i]));
                 }
@@ -63,5 +53,19 @@ public class Main {
             }
         }
 
+    }
+    public static boolean isValid(int l,char[] result){
+        int conCount = 0;
+        int vowelCount = 0;
+        for(int i =0;i < l;i++) {
+            if (result[i] == 'a' || result[i] == 'e' || result[i] == 'i' || result[i] == 'o' || result[i] == 'u')
+                vowelCount++;
+            else conCount++;
+        }
+        if(vowelCount >= 1 && conCount >= 2) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
